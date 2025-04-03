@@ -26,9 +26,18 @@ public class WordSearch {
         
     }
 
+    public boolean contains(String word) {
+
+
+    }
+
+
+    private int getstartpos() {
 
 
 
+        return -10000;
+    }
 
     @Override
     public String toString() {
@@ -40,5 +49,26 @@ public class WordSearch {
             output+= '\n';
         }
         return output;
+    }
+
+
+    //getters and setters
+    public char[][] getBoard() {
+        return board;
+    }
+    public void setBoard(char[][] board) {
+        this.board = board;
+    }
+    public int[] getColmoves() {
+        return colmoves;
+    }
+    public void setColmoves(int[] colmoves) {
+        this.colmoves = colmoves;
+    }
+    public int[] getRowmoves() {
+        return rowmoves;
+    }
+    public void setRowmoves(int[] rowmoves) {
+        this.rowmoves = rowmoves;
     }
 }
