@@ -12,13 +12,13 @@ public class WordDriver {
         Scanner fileinput = new Scanner(new File(file1)); //creating the reader
         WordSearch wordsearch = new WordSearch(fileinput);
         fileinput.close();
-        input.close();
+        
         
 
         System.out.println(wordsearch);
 
 
 
-        
+        input.close();
     }
 }
