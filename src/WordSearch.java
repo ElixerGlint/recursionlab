@@ -26,18 +26,40 @@ public class WordSearch {
         
     }
 
-    public boolean contains(String word) {
+    // public boolean contains(String word) {
 
 
-    }
+    // }
 
 
-    private int getstartpos() {
+    // public boolean start(int row, int col) {
+	// 	if(isValid(row,col)) {
+	// 		stepCount++;
+	// 		board[row][col] = stepCount;
+	// 		return solve(row,col);
+	// 	}
+	// 	else return false;
+	// }
 
+    // public boolean solve(int row, int col) {
+	// 	if(stepCount==board.length*board.length) {
+	// 		return true;
+	// 	}
+	// 	for(int i = 0; i < rowMove.length; i++) {
+	// 		int nextR = row + rowMove[i];
+	// 		int nextC = col + colMove[i];
+	// 		if(isValid(nextR, nextC)) {
+	// 			board[nextR][nextC] = ++stepCount;
+	// 			if(solve(nextR,nextC)) {
+	// 				return true;
+	// 			}
+	// 			board[nextR][nextC] = 0;
+	// 			stepCount--;
+	// 		}
+	// 	}
+	// 	return false;
+	// }
 
-
-        return -10000;
-    }
 
     @Override
     public String toString() {
