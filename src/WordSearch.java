@@ -80,14 +80,6 @@ public class WordSearch {
         }
     }
 
-
-
-
-
-
-
-
-
     @Override
     public String toString() {
         String output = "";
@@ -120,5 +112,5 @@ public class WordSearch {
     public void setRowmoves(int[] rowmoves) {
         this.rowmoves = rowmoves;
     }
-    
+
 }
