@@ -16,7 +16,7 @@ public class WordDriver {
         
 
         System.out.println(wordsearch);
-        System.out.println(wordsearch.start("hello"));
+        System.out.println(wordsearch.start("zebra"));
         System.out.println(wordsearch);
 
         input.close();
