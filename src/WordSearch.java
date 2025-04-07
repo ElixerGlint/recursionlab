@@ -23,7 +23,6 @@ public class WordSearch {
                 board[i][j] = lines.get(i).charAt(j);
             }
         }
-        
     }
 
 
@@ -40,33 +39,48 @@ public class WordSearch {
         return false;
 	}
 
-    public boolean solve(String word, int row, int col, int index) { //main problems here
+    public boolean solve(String word, int row, int col, int index) {
         if(index > word.length()) {
             return false;
         }
-        //----------------
-		for(int i = 0; i < rowmoves.length; i++) {
-			int nextR = row + rowmoves[i];
-			int nextC = col + colmoves[i];
+        
+        for(int i = 0; i < rowmoves.length; i++) {
+            //testing out each of the moves
+            int nextR = row + rowmoves[i];
+            int nextC = col + colmoves[i];
+            if(isValid(nextR, nextC)) { //make the move now
+                if(solve(word, nextR,nextC, index+1)) {
+                    
+                    board[row][col] = Character.toUpperCase(board[row][col]);
+                    return true;
+                }
+            }
+
+        }
+
+		// for(int i = 0; i < rowmoves.length; i++) {
+		// 	int nextR = row + rowmoves[i];
+		// 	int nextC = col + colmoves[i];
+        
             
-            System.out.println(board[row][col]);
-            board[row][col] = Character.toUpperCase(board[row][col]);
-            System.out.println((isValid(nextR, nextC, index, word)));
-			if(isValid(nextR, nextC, index, word)) {
-				if(solve(word, nextR,nextC, index+1)) {
-					return true;
-				}
-				board[nextR][nextC] = 0;
-                //------------
+        //     board[row][col] = Character.toUpperCase(board[row][col]);
+            
+		// 	if(isValid(nextR, nextC, index, word)) {
+        //         System.out.println(board[nextR][nextC]);
+		// 		if(solve(word, nextR,nextC, index+1)) {
+		// 			return true;
+		// 		}
+		// 		board[nextR][nextC] = 0;
+        //         //------------
                 
-			}
-            // board[row][col] = Character.toLowerCase(board[row][col]);
-		}
+		// 	}
+        //     // board[row][col] = Character.toLowerCase(board[row][col]);
+		// }
 		return false;
 	}
 
 
-    public boolean isValid(int nextR, int nextC, int index, String word) {
+    public boolean isValid(int nextR, int nextC) {
         if(nextR < 0 || nextC < 0 || nextR > board.length-1 || nextC > board[0].length-1) {
             return false;
         }
