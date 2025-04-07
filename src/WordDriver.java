@@ -32,12 +32,6 @@ public class WordDriver {
             cont = input.nextLine();
         }
 
-
-
-        
-   
-    
-
         input.close();
     }
 }
