@@ -51,6 +51,7 @@ public class WordSearch {
             
             System.out.println(board[row][col]);
             board[row][col] = Character.toUpperCase(board[row][col]);
+            System.out.println((isValid(nextR, nextC, index, word)));
 			if(isValid(nextR, nextC, index, word)) {
 				if(solve(word, nextR,nextC, index+1)) {
 					return true;
