@@ -29,10 +29,10 @@ public class WordSearch {
     }
 
 
-    public boolean start(String word) throws InterruptedException { //works perfectly
+    public boolean start(String word) { //works perfectly
         System.out.println("Directly below");
-        for(int i = 0; i < board.length -1; i++) {
-            for(int j = 0; j < board[0].length -1; j++) {
+        for(int i = 0; i < board.length ; i++) {
+            for(int j = 0; j < board[0].length ; j++) {
                 if(board[i][j] == word.charAt(0)) {
                     if(solve(word,i,j,0)) {
                         return true;
@@ -43,7 +43,7 @@ public class WordSearch {
         return false;
 	}
 
-    public boolean solve(String word, int row, int col, int index) throws InterruptedException {
+    public boolean solve(String word, int row, int col, int index) { //WORKS!
         if (index == word.length()) {
             return true;
         }
@@ -68,7 +68,7 @@ public class WordSearch {
     }
 
 
-    public boolean isValid(int currentr, int currentc) {
+    public boolean isValid(int currentr, int currentc) { //works
         if(currentr < 0 || currentc < 0 || currentr > board.length - 1 || currentc > board[0].length -1) {
             return false;
         }
