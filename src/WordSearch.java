@@ -9,6 +9,9 @@ public class WordSearch {
     private static int[] colmoves = {0, 1, 1,  1,  0, -1, -1, -1}; //x
     private static int[] rowmoves = {1, 1, 0, -1, -1, -1,  0,  1}; //y
 
+
+    
+
     public WordSearch(Scanner asd) throws FileNotFoundException {
         ArrayList<String> lines = new ArrayList<>();
         try {
@@ -26,7 +29,8 @@ public class WordSearch {
     }
 
 
-    public boolean start(String word) { //works perfectly
+    public boolean start(String word) throws InterruptedException { //works perfectly
+        System.out.println("Directly below");
         for(int i = 0; i < board.length -1; i++) {
             for(int j = 0; j < board[0].length -1; j++) {
                 if(board[i][j] == word.charAt(0)) {
@@ -39,52 +43,36 @@ public class WordSearch {
         return false;
 	}
 
-    public boolean solve(String word, int row, int col, int index) {
-        if(index > word.length()) {
+    public boolean solve(String word, int row, int col, int index) throws InterruptedException {
+        if (index == word.length()) {
+            return true;
+        }
+    
+        if (!isValid(row, col) || board[row][col] != word.charAt(index)) {
             return false;
         }
-        
-        for(int i = 0; i < rowmoves.length; i++) {
-            //testing out each of the moves
+    
+        board[row][col] = Character.toUpperCase(board[row][col]);
+    
+        for (int i = 0; i < rowmoves.length; i++) {
             int nextR = row + rowmoves[i];
             int nextC = col + colmoves[i];
-            if(isValid(nextR, nextC)) { //make the move now
-                if(solve(word, nextR,nextC, index+1)) {
-                    
-                    board[row][col] = Character.toUpperCase(board[row][col]);
-                    return true;
-                }
+            if (solve(word, nextR, nextC, index + 1)) {
+                return true; 
             }
-
         }
 
-		// for(int i = 0; i < rowmoves.length; i++) {
-		// 	int nextR = row + rowmoves[i];
-		// 	int nextC = col + colmoves[i];
-        
-            
-        //     board[row][col] = Character.toUpperCase(board[row][col]);
-            
-		// 	if(isValid(nextR, nextC, index, word)) {
-        //         System.out.println(board[nextR][nextC]);
-		// 		if(solve(word, nextR,nextC, index+1)) {
-		// 			return true;
-		// 		}
-		// 		board[nextR][nextC] = 0;
-        //         //------------
-                
-		// 	}
-        //     // board[row][col] = Character.toLowerCase(board[row][col]);
-		// }
-		return false;
-	}
+        board[row][col] = Character.toLowerCase(board[row][col]);;
+    
+        return false;
+    }
 
 
-    public boolean isValid(int nextR, int nextC) {
-        if(nextR < 0 || nextC < 0 || nextR > board.length-1 || nextC > board[0].length-1) {
+    public boolean isValid(int currentr, int currentc) {
+        if(currentr < 0 || currentc < 0 || currentr > board.length - 1 || currentc > board[0].length -1) {
             return false;
         }
-        if(Character.isUpperCase(board[nextR][nextC])){
+        if(Character.isUpperCase(board[currentr][currentc])){
             return false;
         }
         return true;
@@ -92,11 +80,6 @@ public class WordSearch {
 
 
 
-    private void reset() {
-        //runs through everything and sets it all to lowercase
-
-
-    }
 
 
 
