@@ -25,7 +25,7 @@ public class WordSearch {
         }
     }
 
-    public boolean start(String word) { //works perfectly
+    public boolean contains(String word) { //works perfectly
         for(int i = 0; i < board.length ; i++) {
             for(int j = 0; j < board[0].length ; j++) {
                 if(board[i][j] == word.charAt(0)) {
@@ -42,7 +42,6 @@ public class WordSearch {
         if (index == word.length()) {
             return true;
         }
-    
         if (!isValid(row, col) || board[row][col] != word.charAt(index)) {
             return false;
         }
@@ -121,4 +120,5 @@ public class WordSearch {
     public void setRowmoves(int[] rowmoves) {
         this.rowmoves = rowmoves;
     }
+    
 }
