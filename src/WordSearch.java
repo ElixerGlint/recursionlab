@@ -9,9 +9,6 @@ public class WordSearch {
     private static int[] colmoves = {0, 1, 1,  1,  0, -1, -1, -1}; //x
     private static int[] rowmoves = {1, 1, 0, -1, -1, -1,  0,  1}; //y
 
-
-    
-
     public WordSearch(Scanner asd) throws FileNotFoundException {
         ArrayList<String> lines = new ArrayList<>();
         try {
@@ -28,7 +25,6 @@ public class WordSearch {
         }
     }
 
-
     public boolean start(String word) { //works perfectly
         System.out.println("Directly below");
         for(int i = 0; i < board.length ; i++) {
@@ -43,7 +39,7 @@ public class WordSearch {
         return false;
 	}
 
-    public boolean solve(String word, int row, int col, int index) { //WORKS!
+    public boolean solve(String word, int row, int col, int index) { //WORKS!!!!!!
         if (index == word.length()) {
             return true;
         }
