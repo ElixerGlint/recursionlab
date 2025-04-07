@@ -44,24 +44,22 @@ public class WordSearch {
         if(index > word.length()) {
             return false;
         }
-        if(row < 0 || col < 0 || row >= board.length-1 || col >= board[0].length-1) {
-            return false;
-        }
-        if(!(board[row][col] == word.charAt(index)) || Character.isUpperCase(board[row][col])) {
-            return false;
-        }
+        //----------------
 		for(int i = 0; i < rowmoves.length; i++) {
 			int nextR = row + rowmoves[i];
 			int nextC = col + colmoves[i];
             
+            System.out.println(board[row][col]);
             board[row][col] = Character.toUpperCase(board[row][col]);
 			if(isValid(nextR, nextC, index, word)) {
 				if(solve(word, nextR,nextC, index+1)) {
 					return true;
 				}
 				board[nextR][nextC] = 0;
+                //------------
+                
 			}
-            board[row][col] = Character.toLowerCase(board[row][col]);
+            // board[row][col] = Character.toLowerCase(board[row][col]);
 		}
 		return false;
 	}
