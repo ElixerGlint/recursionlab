@@ -6,8 +6,8 @@ import java.util.Arrays;
 
 public class WordSearch {
     private char[][] board;
-    private int[] colmoves = {0, 1, 1,  1,  0, -1, -1, -1}; //x
-    private int[] rowmoves = {1, 1, 0, -1, -1, -1,  0,  1}; //y
+    private static int[] colmoves = {0, 1, 1,  1,  0, -1, -1, -1}; //x
+    private static int[] rowmoves = {1, 1, 0, -1, -1, -1,  0,  1}; //y
 
     public WordSearch(Scanner asd) throws FileNotFoundException {
         ArrayList<String> lines = new ArrayList<>();
@@ -26,39 +26,70 @@ public class WordSearch {
         
     }
 
-    // public boolean contains(String word) {
+
+    public boolean start(String word) { //works perfectly
+        for(int i = 0; i < board.length -1; i++) {
+            for(int j = 0; j < board[0].length -1; j++) {
+                if(board[i][j] == word.charAt(0)) {
+                    if(solve(word,i,j,0)) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+	}
+
+    public boolean solve(String word, int row, int col, int index) { //main problems here
+        if(index > word.length()) {
+            return false;
+        }
+        if(row < 0 || col < 0 || row >= board.length-1 || col >= board[0].length-1) {
+            return false;
+        }
+        if(!(board[row][col] == word.charAt(index)) || Character.isUpperCase(board[row][col])) {
+            return false;
+        }
+		for(int i = 0; i < rowmoves.length; i++) {
+			int nextR = row + rowmoves[i];
+			int nextC = col + colmoves[i];
+            
+            board[row][col] = Character.toUpperCase(board[row][col]);
+			if(isValid(nextR, nextC, index, word)) {
+				if(solve(word, nextR,nextC, index+1)) {
+					return true;
+				}
+				board[nextR][nextC] = 0;
+			}
+            board[row][col] = Character.toLowerCase(board[row][col]);
+		}
+		return false;
+	}
 
 
-    // }
+    public boolean isValid(int nextR, int nextC, int index, String word) {
+        if(nextR < 0 || nextC < 0 || nextR > board.length-1 || nextC > board[0].length-1) {
+            return false;
+        }
+        if(Character.isUpperCase(board[nextR][nextC])){
+            return false;
+        }
+        return true;
+    }
 
 
-    // public boolean start(int row, int col) {
-	// 	if(isValid(row,col)) {
-	// 		stepCount++;
-	// 		board[row][col] = stepCount;
-	// 		return solve(row,col);
-	// 	}
-	// 	else return false;
-	// }
 
-    // public boolean solve(int row, int col) {
-	// 	if(stepCount==board.length*board.length) {
-	// 		return true;
-	// 	}
-	// 	for(int i = 0; i < rowMove.length; i++) {
-	// 		int nextR = row + rowMove[i];
-	// 		int nextC = col + colMove[i];
-	// 		if(isValid(nextR, nextC)) {
-	// 			board[nextR][nextC] = ++stepCount;
-	// 			if(solve(nextR,nextC)) {
-	// 				return true;
-	// 			}
-	// 			board[nextR][nextC] = 0;
-	// 			stepCount--;
-	// 		}
-	// 	}
-	// 	return false;
-	// }
+    private void reset() {
+        //runs through everything and sets it all to lowercase
+
+
+    }
+
+
+
+
+
+
 
 
     @Override
